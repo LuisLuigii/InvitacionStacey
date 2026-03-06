@@ -6,7 +6,7 @@
 
 <style>
 
-/* COLORES */
+/* COLORES DE TU PAGINA */
 :root{
 --primary-color:#e91e63;
 --secondary-color:#f48fb1;
@@ -15,11 +15,11 @@
 --white:#ffffff;
 }
 
-/* FONDO */
+/* FONDO DE TODA LA PAGINA */
 
 body{
 margin:0;
-min-height:100vh;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -27,86 +27,11 @@ background:#f5e4d8;
 font-family:'Poppins',sans-serif;
 }
 
-/* CONTENEDOR GENERAL (AHORA VERTICAL) */
-
-.layout{
-width:95%;
-max-width:700px;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:40px;
-}
-
-/* ---------------- REPRODUCTOR ---------------- */
-
-.music-box{
-width:100%;
-
-background:rgba(255,255,255,0.45);
-backdrop-filter:blur(8px);
-
-padding:30px;
-border-radius:30px;
-
-border:3px dashed var(--primary-color);
-outline:3px dashed var(--secondary-color);
-outline-offset:-10px;
-
-text-align:center;
-
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-.music-title{
-font-size:28px;
-color:var(--primary-color);
-margin-bottom:20px;
-font-weight:700;
-}
-
-.album{
-width:140px;
-height:140px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid white;
-box-shadow:0 10px 20px rgba(0,0,0,0.25);
-animation:rotate 10s linear infinite;
-}
-
-@keyframes rotate{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
-}
-
-.controls{
-margin-top:20px;
-display:flex;
-justify-content:center;
-gap:15px;
-}
-
-.controls button{
-font-size:20px;
-border:none;
-background:var(--primary-color);
-color:white;
-width:50px;
-height:50px;
-border-radius:50%;
-cursor:pointer;
-}
-
-.controls button:hover{
-background:var(--dark-color);
-}
-
-/* ---------------- INVITACION ---------------- */
+/* INVITACION */
 
 .card{
-width:600px;
-height:360px;
+width:420px;
+height:300px;
 position:relative;
 perspective:2000px;
 cursor:pointer;
@@ -118,34 +43,63 @@ cursor:pointer;
 position:absolute;
 width:100%;
 height:100%;
-border-radius:20px;
+border-radius:15px;
 
 background-image:url("img/fondo.jpg");
 background-size:cover;
 background-position:center;
 
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 
-box-shadow:0 20px 40px rgba(0,0,0,0.3);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 .info{
-padding:40px;
+padding:20px;
 color:#6b4e3d;
 }
 
 .title{
-font-size:40px;
+font-size:30px;
 color:#b58363;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .text{
+font-size:16px;
+margin:6px 0;
+}
+
+.decor{
+font-size:24px;
+margin-bottom:10px;
+}
+
+/* REPRODUCTOR */
+
+.music-controls{
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+
+.music-controls button{
 font-size:20px;
-margin:10px 0;
+border:none;
+background:var(--primary-color);
+color:white;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.music-controls button:hover{
+background:var(--dark-color);
 }
 
 /* PORTADA */
@@ -154,10 +108,8 @@ margin:10px 0;
 position:absolute;
 width:100%;
 height:100%;
-
 background:linear-gradient(#f5e4d8,#f1d7c7);
-
-border-radius:20px;
+border-radius:15px;
 
 display:flex;
 flex-direction:column;
@@ -167,26 +119,20 @@ align-items:center;
 transform-origin:left;
 transition:1s;
 
-box-shadow:0 20px 40px rgba(0,0,0,0.3);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 .cover h1{
-font-size:50px;
+font-size:40px;
 margin:0;
 color:#b58363;
 }
 
 .cover p{
 margin-top:10px;
-font-size:18px;
 }
 
-.decor{
-font-size:30px;
-margin-bottom:15px;
-}
-
-/* ANIMACION */
+/* ANIMACION APERTURA */
 
 .card.open .cover{
 transform:rotateY(-160deg);
@@ -197,32 +143,9 @@ transform:rotateY(-160deg);
 
 <body>
 
-<div class="layout">
-
-<!-- REPRODUCTOR -->
-
-<div class="music-box">
-
-<div class="music-title">Música</div>
-
-<img class="album" src="img/portada.jpg">
-
-<div class="controls">
-
-<button onclick="prev()">⏮</button>
-<button onclick="play()">▶</button>
-<button onclick="pause()">⏸</button>
-<button onclick="next()">⏭</button>
-
-</div>
-
-<audio id="music"></audio>
-
-</div>
-
-<!-- INVITACION -->
-
 <div class="card" onclick="abrir()">
+
+<!-- INTERIOR -->
 
 <div class="card-inside">
 
@@ -242,9 +165,21 @@ Santa Rosa de Lima<br>
 Calle Retorno de Fresno Americano #20
 </div>
 
+<!-- CONTROLES DE MUSICA -->
+
+<div class="music-controls">
+
+<button onclick="prevSong(event)">⏮</button>
+<button onclick="playPause(event)">▶</button>
+<button onclick="nextSong(event)">⏭</button>
+
 </div>
 
 </div>
+
+</div>
+
+<!-- PORTADA -->
 
 <div class="cover">
 
@@ -258,51 +193,64 @@ Calle Retorno de Fresno Americano #20
 
 </div>
 
-</div>
+<audio id="music"></audio>
 
 <script>
+
+/* ABRIR INVITACION */
 
 function abrir(){
 document.querySelector(".card").classList.toggle("open");
 }
 
-/* REPRODUCTOR */
+/* PLAYLIST */
 
-const songs=[
+const songs = [
 "audio/cancion1.mp3",
 "audio/cancion2.mp3",
 "audio/cancion3.mp3"
 ];
 
-let index=0;
+let index = 0;
+const music = document.getElementById("music");
 
-const music=document.getElementById("music");
+music.src = songs[index];
 
-music.src=songs[index];
+/* CONTROLES */
 
-function play(){
+function playPause(e){
+e.stopPropagation();
+
+if(music.paused){
 music.play();
-}
-
-function pause(){
+}else{
 music.pause();
 }
-
-function next(){
-index++;
-if(index>=songs.length){
-index=0;
 }
-music.src=songs[index];
+
+function nextSong(e){
+e.stopPropagation();
+
+index++;
+
+if(index >= songs.length){
+index = 0;
+}
+
+music.src = songs[index];
 music.play();
 }
 
-function prev(){
+function prevSong(e){
+e.stopPropagation();
+
 index--;
-if(index<0){
-index=songs.length-1;
+
+if(index < 0){
+index = songs.length - 1;
 }
-music.src=songs[index];
+
+music.src = songs[index];
 music.play();
 }
 
