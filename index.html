@@ -6,6 +6,8 @@
 
 <title>Baby Shower</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 
 :root{
@@ -70,15 +72,26 @@ text-align:center;
 
 box-shadow:0 20px 40px rgba(0,0,0,0.25);
 
-animation:appear 1.2s ease;
-
 z-index:10;
 
 }
 
 .intro-card h1{
-font-size:70px;
+
+font-family:'Great Vibes',cursive;
+
+font-size:80px;
+
 color:var(--brown);
+
+text-shadow:
+0 0 10px #fff,
+0 0 20px #fff,
+0 0 30px #ffd8b5,
+0 0 40px #ffd8b5;
+
+animation:shine 3s infinite alternate;
+
 }
 
 .intro-card .text{
@@ -136,10 +149,6 @@ align-items:center;
 
 /* TITULO NUBE */
 
-/* TITULO NUBE REAL */
-
-/* TITULO NUBE CON IMAGEN */
-
 .cloud-title{
 
 background-image:url("img/nube.png");
@@ -154,16 +163,21 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:42px;
+font-family:'Great Vibes',cursive;
+
+font-size:55px;
 color:var(--brown);
-font-weight:bold;
+
+text-shadow:
+0 0 8px white,
+0 0 15px #ffd8b5,
+0 0 25px #ffd8b5;
 
 margin-bottom:25px;
 
 text-align:center;
 
 }
-
 
 /* VIDEO */
 
@@ -268,10 +282,28 @@ color:#6b4e3d;
 .boy{color:var(--boy);font-weight:bold;}
 .girl{color:var(--girl);font-weight:bold;}
 
+@keyframes shine{
+
+from{
+text-shadow:
+0 0 5px #fff,
+0 0 10px #fff,
+0 0 20px #ffd8b5;
+}
+
+to{
+text-shadow:
+0 0 15px #fff,
+0 0 25px #ffd8b5,
+0 0 35px #ffd8b5;
+}
+
+}
+
 @media(max-width:600px){
 
 .intro-card h1{
-font-size:45px;
+font-size:50px;
 }
 
 .intro-card{
@@ -279,7 +311,9 @@ padding:40px;
 }
 
 .cloud-title{
-font-size:32px;
+font-size:40px;
+width:320px;
+height:180px;
 }
 
 .text{
@@ -341,10 +375,10 @@ Baby Shower
 
 <div class="controls">
 
-<button onclick="prevSong(event)">⏮</button>
-<button onclick="playSong(event)">▶</button>
-<button onclick="pauseSong(event)">⏸</button>
-<button onclick="nextSong(event)">⏭</button>
+<button onclick="prevSong(event)">&#9664;&#9664;</button>
+<button onclick="playSong(event)">&#9654;</button>
+<button onclick="pauseSong(event)">&#10074;&#10074;</button>
+<button onclick="nextSong(event)">&#9654;&#9654;</button>
 
 </div>
 
@@ -414,7 +448,7 @@ item.appendChild(img);
 
 item.style.left=Math.random()*100+"%";
 
-const duration=2+Math.random()*2;
+const duration=3+Math.random()*2;
 
 item.style.animationDuration=duration+"s";
 
@@ -432,7 +466,7 @@ for(let i=0;i<20;i++){
 createFalling();
 }
 
-setInterval(createFalling,120);
+setInterval(createFalling,180);
 
 /* MUSICA */
 
