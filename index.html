@@ -6,21 +6,108 @@
 
 <style>
 
+/* COLORES DE TU PAGINA */
+:root{
+--primary-color:#e91e63;
+--secondary-color:#f48fb1;
+--dark-color:#ad1457;
+--light-color:#fce4ec;
+--white:#ffffff;
+}
+
+/* FONDO */
 body{
 margin:0;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#f3e6dc,#f7efe8);
-font-family: 'Georgia', serif;
+background-image:url("img/fondo.jpg");
+background-size:cover;
+background-position:center;
+font-family:'Poppins',sans-serif;
 }
 
-/* CONTENEDOR */
+/* CONTENEDOR GENERAL */
+
+.layout{
+width:95%;
+max-width:1200px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:40px;
+}
+
+/* ---------------- REPRODUCTOR ---------------- */
+
+.music-box{
+width:420px;
+
+background:rgba(255,255,255,0.45);
+backdrop-filter:blur(8px);
+
+padding:30px;
+border-radius:30px;
+
+border:3px dashed var(--primary-color);
+outline:3px dashed var(--secondary-color);
+outline-offset:-10px;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.music-title{
+font-size:28px;
+color:var(--primary-color);
+margin-bottom:20px;
+font-weight:700;
+}
+
+.album{
+width:140px;
+height:140px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid white;
+box-shadow:0 10px 20px rgba(0,0,0,0.25);
+animation:rotate 10s linear infinite;
+}
+
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+.controls{
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.controls button{
+font-size:22px;
+border:none;
+background:var(--primary-color);
+color:white;
+width:50px;
+height:50px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.controls button:hover{
+background:var(--dark-color);
+}
+
+/* ---------------- INVITACION ---------------- */
 
 .card{
-width:750px;
-height:450px;
+width:420px;
+height:260px;
 position:relative;
 perspective:2000px;
 cursor:pointer;
@@ -30,80 +117,74 @@ cursor:pointer;
 
 .card-inside{
 position:absolute;
-width:110%;
+width:100%;
 height:100%;
 border-radius:15px;
 
-background-image:
-linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-url("img/fondo.jpg");
-
-background-size: 100% 100%;
-background-position: center;
-background-repeat: no-repeat;
+background-image:url("img/fondo.jpg");
+background-size:contain;
+background-position:center;
+background-repeat:no-repeat;
 
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 .info{
-padding:40px;
+padding:25px;
 color:#6b4e3d;
 }
 
 .title{
-font-size:42px;
+font-size:30px;
 color:#b58363;
-margin-bottom:20px;
-text-shadow:1px 1px 4px rgba(0,0,0,0.2);
+margin-bottom:10px;
 }
 
 .text{
-font-size:20px;
-margin:10px 0;
-text-shadow:1px 1px 3px rgba(0,0,0,0.15);
+font-size:16px;
+margin:6px 0;
 }
+
 /* PORTADA */
 
 .cover{
 position:absolute;
-width:110%;
+width:100%;
 height:100%;
+
 background:linear-gradient(#f5e4d8,#f1d7c7);
+
 border-radius:15px;
 
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
 
 transform-origin:left;
 transition:1s;
 
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 .cover h1{
-font-size:55px;
-color:#b58363;
+font-size:40px;
 margin:0;
+color:#b58363;
 }
 
 .cover p{
-margin-top:15px;
-font-size:18px;
+margin-top:10px;
 }
 
-/* DECORACIÓN */
-
 .decor{
-font-size:28px;
-margin-bottom:15px;
+font-size:24px;
+margin-bottom:10px;
 }
 
 /* APERTURA */
@@ -117,13 +198,37 @@ transform:rotateY(-160deg);
 
 <body>
 
-<div class="card" onclick="abrir()">
+<div class="layout">
 
-<!-- INTERIOR -->
+<!-- REPRODUCTOR -->
+
+<div class="music-box">
+
+<div class="music-title">Música</div>
+
+<img class="album" src="img/portada.jpg">
+
+<div class="controls">
+
+<button onclick="play()">▶</button>
+<button onclick="pause()">⏸</button>
+
+</div>
+
+<audio id="music" src="audio/cancion.mp3"></audio>
+
+</div>
+
+
+<!-- INVITACION -->
+
+<div class="card" onclick="abrir()">
 
 <div class="card-inside">
 
 <div class="info">
+
+<div class="decor">🧸 ⭐ 🌙 ☁️</div>
 
 <div class="title">Baby Shower</div>
 
@@ -141,15 +246,15 @@ Calle Retorno de Fresno Americano #20
 
 </div>
 
-<!-- PORTADA -->
-
 <div class="cover">
 
 <div class="decor">🧸 ☁️ ⭐</div>
 
 <h1>Baby Shower</h1>
 
-<p>Haz click para abrir la invitación</p>
+<p>Haz click para abrir</p>
+
+</div>
 
 </div>
 
@@ -159,6 +264,16 @@ Calle Retorno de Fresno Americano #20
 
 function abrir(){
 document.querySelector(".card").classList.toggle("open");
+}
+
+const music=document.getElementById("music");
+
+function play(){
+music.play();
+}
+
+function pause(){
+music.pause();
 }
 
 </script>
