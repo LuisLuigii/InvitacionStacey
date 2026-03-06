@@ -15,8 +15,6 @@
 --girl:#ff9ac6;
 }
 
-/* GENERAL */
-
 *{
 margin:0;
 padding:0;
@@ -29,51 +27,128 @@ background-image:url("img/fondopagina.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
+overflow-x:hidden;
 }
 
-/* PORTADA */
+/* ========================= */
+/* PORTADA MEJORADA */
+/* ========================= */
 
 #intro{
+
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
+
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 
 background-image:url("img/fondopagina.jpg");
 background-size:cover;
 background-position:center;
 
+z-index:100;
 cursor:pointer;
 
 transition:opacity .8s ease;
-z-index:100;
+
 }
 
-#intro h1{
+/* TARJETA CENTRAL */
+
+.intro-card{
+
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(10px);
+
+padding:60px 80px;
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+
+animation:appear 1.2s ease;
+
+}
+
+.intro-card h1{
+
 font-size:70px;
-color:white;
-text-shadow:0 10px 25px rgba(0,0,0,0.4);
+color:var(--brown);
+margin-bottom:15px;
+
 }
 
-#intro p{
-margin-top:20px;
+.intro-card p{
+
 font-size:22px;
-color:white;
-opacity:.9;
+color:#6b4e3d;
+
+animation:pulse 1.8s infinite;
+
 }
 
-/* PAGINA PRINCIPAL */
+/* ICONOS FLOTANTES */
+
+.floating{
+
+position:absolute;
+font-size:40px;
+animation:float 6s infinite ease-in-out;
+
+}
+
+.f1{top:10%;left:15%;}
+.f2{top:20%;right:20%;}
+.f3{bottom:20%;left:10%;}
+.f4{bottom:15%;right:15%;}
+.f5{top:50%;left:5%;}
+.f6{top:60%;right:8%;}
+
+/* ANIMACIONES */
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+
+}
+
+@keyframes pulse{
+
+0%{opacity:.5}
+50%{opacity:1}
+100%{opacity:.5}
+
+}
+
+@keyframes appear{
+
+from{
+transform:scale(.7);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+/* ========================= */
+/* CONTENIDO */
+/* ========================= */
 
 #main{
 display:none;
 min-height:100vh;
 padding:40px 15px;
-display:flex;
 flex-direction:column;
 align-items:center;
 }
@@ -104,12 +179,17 @@ border-radius:15px;
 /* REPRODUCTOR */
 
 .player{
+
 background:rgba(255,255,255,0.85);
 backdrop-filter:blur(5px);
+
 padding:20px;
 border-radius:20px;
+
 margin-bottom:30px;
+
 text-align:center;
+
 max-width:500px;
 width:100%;
 
@@ -141,6 +221,7 @@ border-radius:50%;
 cursor:pointer;
 
 transition:.3s;
+
 }
 
 .controls button:hover{
@@ -185,12 +266,12 @@ color:#6b4e3d;
 
 @media(max-width:600px){
 
-#intro h1{
-font-size:48px;
+.intro-card h1{
+font-size:45px;
 }
 
-#intro p{
-font-size:18px;
+.intro-card{
+padding:40px;
 }
 
 .title{
@@ -214,20 +295,33 @@ font-size:22px;
 
 <body>
 
+<!-- ========================= -->
 <!-- PORTADA -->
+<!-- ========================= -->
 
 <div id="intro" onclick="enterSite()">
+
+<div class="floating f1">🧸</div>
+<div class="floating f2">☁</div>
+<div class="floating f3">⭐</div>
+<div class="floating f4">🌙</div>
+<div class="floating f5">🧸</div>
+<div class="floating f6">☁</div>
+
+<div class="intro-card">
 
 <h1>Baby Shower</h1>
 <p>Toca para abrir la invitación</p>
 
 </div>
 
+</div>
+
+<!-- ========================= -->
 <!-- CONTENIDO -->
+<!-- ========================= -->
 
 <div id="main">
-
-<!-- VIDEO -->
 
 <div class="video-box">
 
@@ -236,8 +330,6 @@ font-size:22px;
 </video>
 
 </div>
-
-<!-- REPRODUCTOR -->
 
 <div class="player">
 
@@ -253,8 +345,6 @@ font-size:22px;
 </div>
 
 </div>
-
-<!-- INVITACION -->
 
 <div class="card">
 
@@ -283,8 +373,6 @@ Si piensas que es niña ven de <span class="girl">rosa</span>
 
 <script>
 
-/* TRANSICION */
-
 function enterSite(){
 
 const intro=document.getElementById("intro");
@@ -302,8 +390,6 @@ music.play();
 },800);
 
 }
-
-/* MUSICA */
 
 const songs=[
 "audio/contigo.mp3",
@@ -328,20 +414,16 @@ music.pause();
 
 function nextSong(e){
 e.stopPropagation();
-
 index++;
 if(index>=songs.length){index=0;}
-
 music.src=songs[index];
 music.play();
 }
 
 function prevSong(e){
 e.stopPropagation();
-
 index--;
 if(index<0){index=songs.length-1;}
-
 music.src=songs[index];
 music.play();
 }
