@@ -7,10 +7,6 @@
 <style>
 
 :root{
---primary-color:#e91e63;
---secondary-color:#f48fb1;
---dark-color:#ad1457;
-
 --brown:#b58363;
 --brown-dark:#6b4e3d;
 }
@@ -57,8 +53,11 @@ box-shadow:0 25px 50px rgba(0,0,0,0.25);
 
 .info{
 padding:40px;
-margin-top:70px; /* BAJA EL CONTENIDO */
+margin-top:70px;
 color:#6b4e3d;
+background:rgba(255,255,255,0.65);
+border-radius:15px;
+backdrop-filter:blur(6px);
 }
 
 .title{
@@ -93,27 +92,55 @@ backface-visibility:hidden;
 box-shadow:0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* FRENTE */
+/* FRENTE PORTADA BONITA */
 
 .cover-front{
-background:linear-gradient(#f5e4d8,#f1d7c7);
+
+background:
+radial-gradient(circle at top,#fff5ee,transparent 60%),
+linear-gradient(135deg,#f5e4d8,#f1d7c7);
 
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+text-align:center;
+
+border:6px solid rgba(181,131,99,0.4);
 }
+
+/* DECORACION SUPERIOR */
+
+.cover-front::before{
+content:"";
+position:absolute;
+top:30px;
+width:120px;
+height:120px;
+border-radius:50%;
+background:rgba(181,131,99,0.15);
+filter:blur(20px);
+}
+
+/* TITULO */
 
 .cover-front h1{
-font-size:90px;
+font-size:80px;
 margin:0;
 color:#b58363;
+letter-spacing:3px;
+text-shadow:2px 2px 8px rgba(0,0,0,0.15);
 }
 
-/* PARTE TRASERA (REPRODUCTOR) */
+.cover-front p{
+margin-top:20px;
+font-size:22px;
+color:#6b4e3d;
+}
+
+/* PARTE TRASERA */
 
 .cover-back{
-
 background:#f5e4d8;
 
 display:flex;
@@ -129,10 +156,8 @@ transform:rotateY(180deg);
 .music-controls{
 display:flex;
 gap:30px;
-margin-top:350px; /* BAJA LOS BOTONES */
+margin-top:350px;
 }
-
-/* BOTONES */
 
 .music-controls button{
 font-size:30px;
@@ -195,10 +220,11 @@ Calle Retorno de Fresno Americano #20
 <div class="cover-front">
 
 <h1>Baby Shower</h1>
+<p>Haz click para abrir la invitación</p>
 
 </div>
 
-<!-- DETRAS DE PORTADA -->
+<!-- DETRAS -->
 
 <div class="cover-back">
 
@@ -221,8 +247,21 @@ Calle Retorno de Fresno Americano #20
 
 <script>
 
+let abierta=false;
+
 function abrir(){
-document.querySelector(".card").classList.toggle("open");
+
+const card=document.querySelector(".card");
+
+card.classList.toggle("open");
+
+/* MUSICA AUTOMATICA */
+
+if(!abierta){
+music.play();
+abierta=true;
+}
+
 }
 
 /* PLAYLIST */
