@@ -6,7 +6,7 @@
 
 <style>
 
-/* COLORES DE TU PAGINA */
+/* COLORES */
 :root{
 --primary-color:#e91e63;
 --secondary-color:#f48fb1;
@@ -15,35 +15,33 @@
 --white:#ffffff;
 }
 
-/* FONDO DE TODA LA PAGINA */
+/* FONDO */
 
 body{
 margin:0;
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:#f5e4d8; /* COLOR BEIGE COMO TENIAS */
-
+background:#f5e4d8;
 font-family:'Poppins',sans-serif;
 }
 
-/* CONTENEDOR GENERAL */
+/* CONTENEDOR GENERAL (AHORA VERTICAL) */
 
 .layout{
 width:95%;
-max-width:1100px;
+max-width:700px;
 display:flex;
-justify-content:space-between;
+flex-direction:column;
 align-items:center;
-gap:60px;
+gap:40px;
 }
 
 /* ---------------- REPRODUCTOR ---------------- */
 
 .music-box{
-width:360px;
+width:100%;
 
 background:rgba(255,255,255,0.45);
 backdrop-filter:blur(8px);
@@ -68,8 +66,8 @@ font-weight:700;
 }
 
 .album{
-width:130px;
-height:130px;
+width:140px;
+height:140px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid white;
@@ -86,11 +84,11 @@ to{transform:rotate(360deg);}
 margin-top:20px;
 display:flex;
 justify-content:center;
-gap:20px;
+gap:15px;
 }
 
 .controls button{
-font-size:22px;
+font-size:20px;
 border:none;
 background:var(--primary-color);
 color:white;
@@ -107,8 +105,8 @@ background:var(--dark-color);
 /* ---------------- INVITACION ---------------- */
 
 .card{
-width:360px;
-height:240px;
+width:600px;
+height:360px;
 position:relative;
 perspective:2000px;
 cursor:pointer;
@@ -120,9 +118,7 @@ cursor:pointer;
 position:absolute;
 width:100%;
 height:100%;
-border-radius:15px;
-
-/* FONDO INTERIOR DE LA INVITACION */
+border-radius:20px;
 
 background-image:url("img/fondo.jpg");
 background-size:cover;
@@ -133,23 +129,23 @@ justify-content:center;
 align-items:center;
 text-align:center;
 
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 
 .info{
-padding:25px;
+padding:40px;
 color:#6b4e3d;
 }
 
 .title{
-font-size:28px;
+font-size:40px;
 color:#b58363;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .text{
-font-size:15px;
-margin:6px 0;
+font-size:20px;
+margin:10px 0;
 }
 
 /* PORTADA */
@@ -161,7 +157,7 @@ height:100%;
 
 background:linear-gradient(#f5e4d8,#f1d7c7);
 
-border-radius:15px;
+border-radius:20px;
 
 display:flex;
 flex-direction:column;
@@ -171,25 +167,26 @@ align-items:center;
 transform-origin:left;
 transition:1s;
 
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 
 .cover h1{
-font-size:36px;
+font-size:50px;
 margin:0;
 color:#b58363;
 }
 
 .cover p{
 margin-top:10px;
+font-size:18px;
 }
 
 .decor{
-font-size:24px;
-margin-bottom:10px;
+font-size:30px;
+margin-bottom:15px;
 }
 
-/* ANIMACION APERTURA */
+/* ANIMACION */
 
 .card.open .cover{
 transform:rotateY(-160deg);
@@ -212,15 +209,16 @@ transform:rotateY(-160deg);
 
 <div class="controls">
 
+<button onclick="prev()">⏮</button>
 <button onclick="play()">▶</button>
 <button onclick="pause()">⏸</button>
+<button onclick="next()">⏭</button>
 
 </div>
 
-<audio id="music" src="audio/cancion.mp3"></audio>
+<audio id="music"></audio>
 
 </div>
-
 
 <!-- INVITACION -->
 
@@ -268,7 +266,19 @@ function abrir(){
 document.querySelector(".card").classList.toggle("open");
 }
 
+/* REPRODUCTOR */
+
+const songs=[
+"audio/cancion1.mp3",
+"audio/cancion2.mp3",
+"audio/cancion3.mp3"
+];
+
+let index=0;
+
 const music=document.getElementById("music");
+
+music.src=songs[index];
 
 function play(){
 music.play();
@@ -276,6 +286,24 @@ music.play();
 
 function pause(){
 music.pause();
+}
+
+function next(){
+index++;
+if(index>=songs.length){
+index=0;
+}
+music.src=songs[index];
+music.play();
+}
+
+function prev(){
+index--;
+if(index<0){
+index=songs.length-1;
+}
+music.src=songs[index];
+music.play();
 }
 
 </script>
