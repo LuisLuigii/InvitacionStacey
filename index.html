@@ -58,8 +58,6 @@ overflow:hidden;
 
 }
 
-/* TARJETA */
-
 .intro-card{
 
 background:rgba(255,255,255,0.85);
@@ -83,8 +81,14 @@ font-size:70px;
 color:var(--brown);
 }
 
+.intro-card .text{
+font-size:22px;
+margin-top:10px;
+color:#6b4e3d;
+}
+
 /* ========================= */
-/* LLUVIA DE IMAGENES */
+/* LLUVIA */
 /* ========================= */
 
 .falling{
@@ -113,23 +117,7 @@ opacity:1;
 
 100%{
 transform:translateY(110vh) rotate(360deg);
-opacity:0.9;
-}
-
-}
-
-/* ANIMACION TARJETA */
-
-@keyframes appear{
-
-from{
-transform:scale(.7);
-opacity:0;
-}
-
-to{
-transform:scale(1);
-opacity:1;
+opacity:.9;
 }
 
 }
@@ -144,6 +132,50 @@ min-height:100vh;
 padding:40px 15px;
 flex-direction:column;
 align-items:center;
+}
+
+/* TITULO NUBE */
+
+.cloud-title{
+
+background:white;
+padding:20px 50px;
+
+border-radius:100px;
+
+font-size:42px;
+color:var(--brown);
+
+margin-bottom:25px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+position:relative;
+
+}
+
+.cloud-title:before,
+.cloud-title:after{
+
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+
+}
+
+.cloud-title:before{
+width:60px;
+height:60px;
+top:-25px;
+left:20px;
+}
+
+.cloud-title:after{
+width:80px;
+height:80px;
+top:-35px;
+right:20px;
 }
 
 /* VIDEO */
@@ -240,12 +272,6 @@ text-align:center;
 box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
-.title{
-font-size:50px;
-color:var(--brown);
-margin-bottom:20px;
-}
-
 .text{
 font-size:22px;
 margin:12px 0;
@@ -254,8 +280,6 @@ color:#6b4e3d;
 
 .boy{color:var(--boy);font-weight:bold;}
 .girl{color:var(--girl);font-weight:bold;}
-
-/* RESPONSIVE */
 
 @media(max-width:600px){
 
@@ -267,8 +291,8 @@ font-size:45px;
 padding:40px;
 }
 
-.title{
-font-size:36px;
+.cloud-title{
+font-size:32px;
 }
 
 .text{
@@ -297,19 +321,24 @@ width:40px;
 <div id="intro" onclick="enterSite()">
 
 <div class="intro-card">
+
 <h1>Baby Shower</h1>
+
 <div class="text">
-Me gustaria que formaras parte de esto..
-</div>
+Me gustaría que formaras parte de esto..
 </div>
 
-  
+</div>
 
 </div>
 
 <!-- CONTENIDO -->
 
 <div id="main">
+
+<div class="cloud-title">
+Baby Shower
+</div>
 
 <div class="video-box">
 
@@ -321,7 +350,7 @@ Me gustaria que formaras parte de esto..
 
 <div class="player">
 
-<h2>Asi suena tu llegada</h2>
+<h2>Así suena tu llegada</h2>
 
 <div class="controls">
 
@@ -335,8 +364,6 @@ Me gustaria que formaras parte de esto..
 </div>
 
 <div class="card">
-
-<div class="title">Baby Shower</div>
 
 <div class="text"><b>Fecha:</b> 28 de marzo</div>
 
@@ -381,9 +408,9 @@ music.play();
 
 }
 
-/* LLUVIA DE IMAGENES */
+/* LLUVIA */
 
-const images=["img/osito.png","img/estrella.png", "img/pato.png", "img/elefante.png"];
+const images=["img/osito.png","img/estrella.png","img/pato.png","img/elefante.png"];
 
 function createFalling(){
 
@@ -400,7 +427,7 @@ item.appendChild(img);
 
 item.style.left=Math.random()*100+"%";
 
-const duration=4+Math.random()*4;
+const duration=2+Math.random()*2;
 
 item.style.animationDuration=duration+"s";
 
@@ -412,7 +439,13 @@ item.remove();
 
 }
 
-setInterval(createFalling,400);
+/* aparecen de inmediato */
+
+for(let i=0;i<20;i++){
+createFalling();
+}
+
+setInterval(createFalling,120);
 
 /* MUSICA */
 
