@@ -136,26 +136,31 @@ align-items:center;
 
 /* TITULO NUBE */
 
+/* TITULO NUBE REAL */
+
 .cloud-title{
 
-background:white;
-padding:20px 50px;
+position:relative;
 
-border-radius:100px;
+background:white;
+
+padding:35px 70px;
 
 font-size:42px;
 color:var(--brown);
 
-margin-bottom:25px;
+margin-bottom:30px;
+
+border-radius:80px;
 
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
 
-position:relative;
-
 }
 
-.cloud-title:before,
-.cloud-title:after{
+/* BURBUJAS DE LA NUBE */
+
+.cloud-title::before,
+.cloud-title::after{
 
 content:"";
 position:absolute;
@@ -164,18 +169,27 @@ border-radius:50%;
 
 }
 
-.cloud-title:before{
+/* burbuja izquierda */
+.cloud-title::before{
+width:70px;
+height:70px;
+top:-30px;
+left:40px;
+box-shadow:
+80px -10px 0 10px white,
+150px 0px 0 5px white,
+220px -15px 0 15px white;
+}
+
+/* burbuja derecha */
+.cloud-title::after{
 width:60px;
 height:60px;
 top:-25px;
-left:20px;
-}
-
-.cloud-title:after{
-width:80px;
-height:80px;
-top:-35px;
-right:20px;
+right:50px;
+box-shadow:
+-80px -10px 0 10px white,
+-150px 5px 0 5px white;
 }
 
 /* VIDEO */
