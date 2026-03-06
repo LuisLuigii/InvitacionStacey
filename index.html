@@ -138,59 +138,32 @@ align-items:center;
 
 /* TITULO NUBE REAL */
 
+/* TITULO NUBE CON IMAGEN */
+
 .cloud-title{
 
-position:relative;
+background-image:url("img/nube.png");
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
 
-background:white;
+width:420px;
+height:220px;
 
-padding:35px 70px;
+display:flex;
+align-items:center;
+justify-content:center;
 
 font-size:42px;
 color:var(--brown);
+font-weight:bold;
 
-margin-bottom:30px;
+margin-bottom:25px;
 
-border-radius:80px;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-
-}
-
-/* BURBUJAS DE LA NUBE */
-
-.cloud-title::before,
-.cloud-title::after{
-
-content:"";
-position:absolute;
-background:white;
-border-radius:50%;
+text-align:center;
 
 }
 
-/* burbuja izquierda */
-.cloud-title::before{
-width:70px;
-height:70px;
-top:-30px;
-left:40px;
-box-shadow:
-80px -10px 0 10px white,
-150px 0px 0 5px white,
-220px -15px 0 15px white;
-}
-
-/* burbuja derecha */
-.cloud-title::after{
-width:60px;
-height:60px;
-top:-25px;
-right:50px;
-box-shadow:
--80px -10px 0 10px white,
--150px 5px 0 5px white;
-}
 
 /* VIDEO */
 
