@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Baby Shower</title>
 
 <style>
@@ -10,267 +11,177 @@
 :root{
 --brown:#b58363;
 --brown-dark:#6b4e3d;
-
 --boy:#6ec6ff;
 --girl:#ff9ac6;
 }
 
-/* FONDO DE TODA LA PAGINA */
+/* GENERAL */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
-margin:0;
-min-height:100vh;
+font-family:'Poppins',sans-serif;
+background-image:url("img/fondopagina.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+/* PORTADA */
+
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 
 background-image:url("img/fondopagina.jpg");
 background-size:cover;
 background-position:center;
-background-repeat:no-repeat;
-background-attachment:fixed;
 
-font-family:'Poppins',sans-serif;
-}
-
-/* TARJETA */
-
-.card{
-width:620px;
-height:520px;
-position:relative;
-perspective:2000px;
 cursor:pointer;
+
+transition:opacity .8s ease;
+z-index:100;
 }
 
-/* INTERIOR */
+#intro h1{
+font-size:70px;
+color:white;
+text-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
 
-.card-inside{
-position:absolute;
-width:100%;
-height:100%;
+#intro p{
+margin-top:20px;
+font-size:22px;
+color:white;
+opacity:.9;
+}
+
+/* PAGINA PRINCIPAL */
+
+#main{
+display:none;
+min-height:100vh;
+padding:30px 15px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* REPRODUCTOR */
+
+.player{
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(5px);
+padding:20px;
 border-radius:20px;
+margin-bottom:30px;
+text-align:center;
+max-width:500px;
+width:100%;
 
-background-image:url("img/fondo.jpg");
-background-size:cover;
-background-position:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
 
+.player h2{
+color:var(--brown);
+margin-bottom:15px;
+}
+
+.controls{
 display:flex;
 justify-content:center;
-align-items:center;
-text-align:center;
-
-box-shadow:0 25px 50px rgba(0,0,0,0.25);
+gap:20px;
 }
 
-.info{
-padding:40px;
-margin-top:70px;
-color:#6b4e3d;
+.controls button{
+
+font-size:26px;
+border:none;
+background:var(--brown);
+color:white;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+cursor:pointer;
+
+transition:.3s;
+}
+
+.controls button:hover{
+background:var(--brown-dark);
+transform:scale(1.1);
+}
+
+/* INVITACION */
+
+.card{
+
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(5px);
+
+padding:40px 30px;
+border-radius:25px;
+
+max-width:600px;
+width:100%;
+
+text-align:center;
+
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
 .title{
-font-size:60px;
-color:#b58363;
+font-size:50px;
+color:var(--brown);
 margin-bottom:20px;
 }
 
 .text{
-font-size:26px;
+font-size:22px;
 margin:12px 0;
+color:#6b4e3d;
 }
 
 .boy{color:var(--boy);font-weight:bold;}
 .girl{color:var(--girl);font-weight:bold;}
 
-/* PORTADA */
+/* RESPONSIVE */
 
-.cover{
-position:absolute;
-width:100%;
-height:100%;
-transform-style:preserve-3d;
-transform-origin:left;
-transition:1s;
+@media(max-width:600px){
+
+#intro h1{
+font-size:48px;
 }
 
-.cover-front,
-.cover-back{
-position:absolute;
-width:100%;
-height:100%;
-border-radius:20px;
-backface-visibility:hidden;
-box-shadow:0 25px 50px rgba(0,0,0,0.25);
-}
-
-/* PORTADA */
-
-.cover-front{
-
-background:
-radial-gradient(circle at top,#ffffff50,transparent 60%),
-linear-gradient(135deg,#f5e4d8,#f1d7c7);
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-
-overflow:hidden;
-
-border:6px solid rgba(181,131,99,0.35);
-}
-
-/* ESTRELLAS */
-
-.cover-front::before{
-content:"✨ ✨ ✨ ✨ ✨";
-position:absolute;
-top:40px;
-font-size:26px;
-opacity:.6;
-animation:floatStars 6s infinite linear;
-}
-
-@keyframes floatStars{
-0%{transform:translateY(0)}
-50%{transform:translateY(15px)}
-100%{transform:translateY(0)}
-}
-
-/* GLOBOS */
-
-.balloon{
-position:absolute;
-width:70px;
-height:90px;
-border-radius:50%;
-opacity:.8;
-animation:floatBalloon 8s infinite ease-in-out;
-background:#d6a889;
-}
-
-.balloon.blue{
-left:60px;
-bottom:20px;
-}
-
-.balloon.pink{
-right:60px;
-bottom:20px;
-animation-delay:2s;
-}
-
-@keyframes floatBalloon{
-0%{transform:translateY(0)}
-50%{transform:translateY(-40px)}
-100%{transform:translateY(0)}
-}
-
-/* TITULO */
-
-.cover-front h1{
-font-size:80px;
-margin:0;
-color:#b58363;
-text-shadow:0 5px 20px rgba(0,0,0,.15);
-letter-spacing:3px;
-animation:floatTitle 4s infinite ease-in-out;
-}
-
-@keyframes floatTitle{
-0%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-100%{transform:translateY(0)}
-}
-
-.cover-front p{
-margin-top:20px;
-font-size:24px;
-color:#6b4e3d;
-}
-
-/* PARTE TRASERA */
-
-.cover-back{
-background:#f5e4d8;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-transform:rotateY(180deg);
-}
-
-/* MUSICA */
-
-.music-controls{
-display:flex;
-gap:30px;
-margin-top:350px;
-}
-
-.music-controls button{
-font-size:30px;
-border:none;
-background:var(--brown);
-color:white;
-width:80px;
-height:80px;
-border-radius:50%;
-cursor:pointer;
-transition:0.3s;
-}
-
-.music-controls button:hover{
-background:var(--brown-dark);
-transform:scale(1.1);
-}
-
-/* ABRIR TARJETA */
-
-.card.open .cover{
-transform:rotateY(-180deg);
-}
-
-/* ========================= */
-/* RESPONSIVE PARA CELULAR   */
-/* ========================= */
-
-@media (max-width:700px){
-
-.card{
-width:92vw;
-height:420px;
+#intro p{
+font-size:18px;
 }
 
 .title{
-font-size:40px;
+font-size:36px;
 }
 
 .text{
 font-size:18px;
 }
 
-.cover-front h1{
-font-size:50px;
-}
-
-.music-controls{
-gap:15px;
-margin-top:250px;
-}
-
-.music-controls button{
-width:60px;
-height:60px;
+.controls button{
+width:55px;
+height:55px;
 font-size:22px;
-}
-
-.balloon{
-width:50px;
-height:65px;
 }
 
 }
@@ -280,15 +191,44 @@ height:65px;
 
 <body>
 
-<div class="card" onclick="abrir()">
+<!-- PORTADA -->
 
-<div class="card-inside">
+<div id="intro" onclick="enterSite()">
 
-<div class="info">
+<h1>Baby Shower</h1>
+<p>Toca para abrir la invitación</p>
+
+</div>
+
+<!-- CONTENIDO -->
+
+<div id="main">
+
+<!-- REPRODUCTOR -->
+
+<div class="player">
+
+<h2>Música</h2>
+
+<div class="controls">
+
+<button onclick="prevSong(event)">⏮</button>
+<button onclick="playSong(event)">▶</button>
+<button onclick="pauseSong(event)">⏸</button>
+<button onclick="nextSong(event)">⏭</button>
+
+</div>
+
+</div>
+
+<!-- INVITACION -->
+
+<div class="card">
 
 <div class="title">Baby Shower</div>
 
 <div class="text"><b>Fecha:</b> 28 de marzo</div>
+
 <div class="text"><b>Hora:</b> 4:00 PM</div>
 
 <div class="text">
@@ -303,35 +243,6 @@ Si piensas que es niña ven de <span class="girl">rosa</span>
 </div>
 
 </div>
-</div>
-
-<!-- PORTADA -->
-
-<div class="cover">
-
-<div class="cover-front">
-
-<div class="balloon blue"></div>
-<div class="balloon pink"></div>
-
-<h1>Baby Shower</h1>
-
-</div>
-
-<div class="cover-back">
-
-<div class="music-controls">
-
-<button onclick="prevSong(event)">⏮</button>
-<button onclick="playSong(event)">▶</button>
-<button onclick="pauseSong(event)">⏸</button>
-<button onclick="nextSong(event)">⏭</button>
-
-</div>
-
-</div>
-
-</div>
 
 </div>
 
@@ -339,20 +250,27 @@ Si piensas que es niña ven de <span class="girl">rosa</span>
 
 <script>
 
-let abierta=false;
+/* TRANSICION */
 
-function abrir(){
+function enterSite(){
 
-const card=document.querySelector(".card");
+const intro=document.getElementById("intro");
+const main=document.getElementById("main");
 
-card.classList.toggle("open");
+intro.style.opacity="0";
 
-if(!abierta){
+setTimeout(()=>{
+
+intro.style.display="none";
+main.style.display="flex";
+
 music.play();
-abierta=true;
-}
+
+},800);
 
 }
+
+/* MUSICA */
 
 const songs=[
 "audio/contigo.mp3",
