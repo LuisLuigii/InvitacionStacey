@@ -13,10 +13,10 @@ display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#f3e6dc,#f7efe8);
-font-family: 'Georgia', serif;
+font-family: Georgia, serif;
 }
 
-/* CONTENEDOR */
+/* TARJETA */
 
 .card{
 width:750px;
@@ -34,38 +34,42 @@ width:100%;
 height:100%;
 border-radius:15px;
 
-background-image:
-linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-url("img/fondo.jpg");
-
-background-size:cover;
+background-image:url("fondo.jpg");
+background-size:contain;
 background-position:center;
-
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
+background-repeat:no-repeat;
 
 box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* TEXTO */
+/* TEXTO POSICIONADO EN EL ESPACIO VACÍO */
 
 .info{
-background:rgba(255,255,255,0.8);
-padding:40px;
+position:absolute;
+
+top:52%;
+left:35%;
+
+transform:translate(-50%,-50%);
+
+background:rgba(255,255,255,0.85);
+padding:35px 40px;
+
 border-radius:15px;
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 .title{
-font-size:42px;
+font-size:40px;
 color:#b58363;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .text{
-font-size:20px;
-margin:10px 0;
+font-size:19px;
+margin:8px 0;
 }
 
 /* PORTADA */
@@ -100,14 +104,12 @@ margin-top:15px;
 font-size:18px;
 }
 
-/* DECORACIÓN */
-
 .decor{
-font-size:28px;
+font-size:30px;
 margin-bottom:15px;
 }
 
-/* APERTURA */
+/* ANIMACIÓN ABRIR */
 
 .card.open .cover{
 transform:rotateY(-160deg);
@@ -126,12 +128,11 @@ transform:rotateY(-160deg);
 
 <div class="info">
 
-<div class="decor">🧸 ⭐ 🌙 ☁️</div>
+<div class="decor">🧸 ⭐ ☁️</div>
 
 <div class="title">Baby Shower</div>
 
-<div class="text"><b>Festejo:</b> Baby Shower</div>
-<div class="text"><b>Fecha:</b> 28 de marzo</div>
+<div class="text"><b>Fecha:</b> Sábado 28 de Marzo</div>
 <div class="text"><b>Hora:</b> 4:00 PM</div>
 
 <div class="text">
