@@ -10,8 +10,8 @@
 --brown:#b58363;
 --brown-dark:#6b4e3d;
 
---boy:#3fa9f5;
---girl:#ff6fa5;
+--boy:#6ec6ff;
+--girl:#ff9ac6;
 }
 
 body{
@@ -71,17 +71,8 @@ font-size:26px;
 margin:12px 0;
 }
 
-/* COLORES NIÑO NIÑA */
-
-.boy{
-color:var(--boy);
-font-weight:bold;
-}
-
-.girl{
-color:var(--girl);
-font-weight:bold;
-}
+.boy{color:var(--boy);font-weight:bold;}
+.girl{color:var(--girl);font-weight:bold;}
 
 /* PORTADA */
 
@@ -104,13 +95,13 @@ backface-visibility:hidden;
 box-shadow:0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* FRENTE */
+/* PORTADA BONITA */
 
 .cover-front{
 
 background:
-radial-gradient(circle at top,#fff5ee,transparent 60%),
-linear-gradient(135deg,#f5e4d8,#f1d7c7);
+radial-gradient(circle at top,#ffffff40,transparent),
+linear-gradient(135deg,var(--boy),var(--girl));
 
 display:flex;
 flex-direction:column;
@@ -118,48 +109,92 @@ justify-content:center;
 align-items:center;
 text-align:center;
 
-border:6px solid rgba(181,131,99,0.4);
+overflow:hidden;
 }
 
+/* ESTRELLAS */
+
 .cover-front::before{
-content:"";
+content:"✨ ✨ ✨ ✨ ✨";
 position:absolute;
-top:30px;
-width:120px;
-height:120px;
-border-radius:50%;
-background:rgba(181,131,99,0.15);
-filter:blur(20px);
+top:40px;
+font-size:26px;
+opacity:.6;
+animation:floatStars 6s infinite linear;
 }
+
+@keyframes floatStars{
+0%{transform:translateY(0)}
+50%{transform:translateY(15px)}
+100%{transform:translateY(0)}
+}
+
+/* GLOBOS */
+
+.balloon{
+position:absolute;
+width:70px;
+height:90px;
+border-radius:50%;
+opacity:.8;
+animation:floatBalloon 8s infinite ease-in-out;
+}
+
+.balloon.blue{
+background:var(--boy);
+left:60px;
+bottom:20px;
+}
+
+.balloon.pink{
+background:var(--girl);
+right:60px;
+bottom:20px;
+animation-delay:2s;
+}
+
+@keyframes floatBalloon{
+0%{transform:translateY(0)}
+50%{transform:translateY(-40px)}
+100%{transform:translateY(0)}
+}
+
+/* TITULO */
 
 .cover-front h1{
 font-size:80px;
 margin:0;
-color:#b58363;
+color:white;
+text-shadow:0 5px 20px rgba(0,0,0,.25);
 letter-spacing:3px;
-text-shadow:2px 2px 8px rgba(0,0,0,0.15);
+animation:floatTitle 4s infinite ease-in-out;
+}
+
+@keyframes floatTitle{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
 }
 
 .cover-front p{
 margin-top:20px;
-font-size:22px;
-color:#6b4e3d;
+font-size:24px;
+color:white;
+opacity:.9;
 }
 
 /* PARTE TRASERA */
 
 .cover-back{
 background:#f5e4d8;
-
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-
 transform:rotateY(180deg);
 }
 
-/* CONTROLES MUSICA */
+/* MUSICA */
 
 .music-controls{
 display:flex;
@@ -197,8 +232,6 @@ transform:rotateY(-180deg);
 
 <div class="card" onclick="abrir()">
 
-<!-- INTERIOR -->
-
 <div class="card-inside">
 
 <div class="info">
@@ -214,11 +247,12 @@ Santa Rosa de Lima<br>
 Calle Retorno de Fresno Americano #20
 </div>
 
-  <div class="text">
+<div class="text">
 Si piensas que es niño ven de <span class="boy">azul</span><br>
-Si piensas que es niña ven de <span class="girl">rosa</span><br>
+Si piensas que es niña ven de <span class="girl">rosa</span>
 </div>
 
+</div>
 </div>
 
 <!-- PORTADA -->
@@ -226,6 +260,9 @@ Si piensas que es niña ven de <span class="girl">rosa</span><br>
 <div class="cover">
 
 <div class="cover-front">
+
+<div class="balloon blue"></div>
+<div class="balloon pink"></div>
 
 <h1>Baby Shower</h1>
 <p>Haz click para abrir la invitación</p>
@@ -293,10 +330,7 @@ function nextSong(e){
 e.stopPropagation();
 
 index++;
-
-if(index>=songs.length){
-index=0;
-}
+if(index>=songs.length){index=0;}
 
 music.src=songs[index];
 music.play();
@@ -306,10 +340,7 @@ function prevSong(e){
 e.stopPropagation();
 
 index--;
-
-if(index<0){
-index=songs.length-1;
-}
+if(index<0){index=songs.length-1;}
 
 music.src=songs[index];
 music.play();
