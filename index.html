@@ -72,10 +72,33 @@ opacity:.9;
 #main{
 display:none;
 min-height:100vh;
-padding:30px 15px;
+padding:40px 15px;
 display:flex;
 flex-direction:column;
 align-items:center;
+}
+
+/* VIDEO */
+
+.video-box{
+
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(5px);
+
+padding:15px;
+border-radius:20px;
+
+max-width:500px;
+width:100%;
+
+margin-bottom:30px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.video-box video{
+width:100%;
+border-radius:15px;
 }
 
 /* REPRODUCTOR */
@@ -203,6 +226,16 @@ font-size:22px;
 <!-- CONTENIDO -->
 
 <div id="main">
+
+<!-- VIDEO -->
+
+<div class="video-box">
+
+<video autoplay muted loop playsinline>
+<source src="video/video.mp4" type="video/mp4">
+</video>
+
+</div>
 
 <!-- REPRODUCTOR -->
 
