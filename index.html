@@ -9,6 +9,9 @@
 :root{
 --brown:#b58363;
 --brown-dark:#6b4e3d;
+
+--boy:#3fa9f5;
+--girl:#ff6fa5;
 }
 
 body{
@@ -55,9 +58,6 @@ box-shadow:0 25px 50px rgba(0,0,0,0.25);
 padding:40px;
 margin-top:70px;
 color:#6b4e3d;
-background:rgba(255,255,255,0.65);
-border-radius:15px;
-backdrop-filter:blur(6px);
 }
 
 .title{
@@ -69,6 +69,18 @@ margin-bottom:20px;
 .text{
 font-size:26px;
 margin:12px 0;
+}
+
+/* COLORES NIÑO NIÑA */
+
+.boy{
+color:var(--boy);
+font-weight:bold;
+}
+
+.girl{
+color:var(--girl);
+font-weight:bold;
 }
 
 /* PORTADA */
@@ -92,7 +104,7 @@ backface-visibility:hidden;
 box-shadow:0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* FRENTE PORTADA BONITA */
+/* FRENTE */
 
 .cover-front{
 
@@ -109,8 +121,6 @@ text-align:center;
 border:6px solid rgba(181,131,99,0.4);
 }
 
-/* DECORACION SUPERIOR */
-
 .cover-front::before{
 content:"";
 position:absolute;
@@ -121,8 +131,6 @@ border-radius:50%;
 background:rgba(181,131,99,0.15);
 filter:blur(20px);
 }
-
-/* TITULO */
 
 .cover-front h1{
 font-size:80px;
@@ -197,7 +205,11 @@ transform:rotateY(-180deg);
 
 <div class="title">Baby Shower</div>
 
-<div class="text"><b>Festejo:</b> Baby Shower</div>
+<div class="text">
+Si piensas que es <span class="boy">niño</span> ven de <span class="boy">azul</span><br>
+y si piensas que es <span class="girl">niña</span> ven de <span class="girl">rosa</span>
+</div>
+
 <div class="text"><b>Fecha:</b> 28 de marzo</div>
 <div class="text"><b>Hora:</b> 4:00 PM</div>
 
@@ -215,16 +227,12 @@ Calle Retorno de Fresno Americano #20
 
 <div class="cover">
 
-<!-- FRENTE -->
-
 <div class="cover-front">
 
 <h1>Baby Shower</h1>
 <p>Haz click para abrir la invitación</p>
 
 </div>
-
-<!-- DETRAS -->
 
 <div class="cover-back">
 
@@ -255,16 +263,12 @@ const card=document.querySelector(".card");
 
 card.classList.toggle("open");
 
-/* MUSICA AUTOMATICA */
-
 if(!abierta){
 music.play();
 abierta=true;
 }
 
 }
-
-/* PLAYLIST */
 
 const songs=[
 "audio/contigo.mp3",
